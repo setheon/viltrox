@@ -52,7 +52,7 @@ client.on('messageCreate', async (message) => {
       const stats = await getUserStats(userId, SOURCE_GUILD_ID);
       console.log(`📊 !points requested by ${message.author.tag} in Photography Lounge`);
       return message.channel.send({
-        content: `🧮 <@${userId}>, you have **${stats.count} / ${REQUIRED_MESSAGES}** points toward the **Freshman** role in Photography Lounge.`,
+        content: `🧮 <@${userId}>, you have **${stats.count} / ${REQUIRED_MESSAGES}** points toward the **Freshman** role.`,
       });
     }
 
@@ -67,7 +67,6 @@ if (sourceMember && !hasSourceRole) {
       await sourceMember.roles.add(SERVER_A_ROLE_ID).catch(console.error);
       console.log(`🎉 ${message.author.tag} earned Freshman role in Photography Lounge`);
       await message.channel.send({
-        content: `🎉 <@${userId}> has earned the **Freshman** role for participating in Photography Lounge! You can now submit an entry in the Viltrox x Photography Lounge "Dual Focus" Giveaway.`
       });
     }
   }
@@ -85,7 +84,6 @@ if (destMember && !hasDestRole) {
       await destMember.roles.add(SERVER_B_ROLE_ID).catch(console.error);
       console.log(`🎉 ${message.author.tag} earned Freshman role in Viltrox Guild`);
       await message.channel.send({
-        content: `🎉 <@${userId}> has earned the **Freshman** role for participating in Viltrox Guild! You can now submit an entry in the Viltrox x Photography Lounge "Dual Focus" Giveaway.`
       });
     }
   }
@@ -99,7 +97,7 @@ if (destMember && !hasDestRole) {
       console.log(`❌ ${message.author.tag} tried to submit without required roles in both servers`);
       await message.delete().catch(console.error);
       const warning = await message.channel.send({
-        content: `⚠️ <@${userId}>, you must be a member of **both servers** and have the required roles to submit. Join here if needed: https://discord.gg/photography`,
+        content: `⚠️ <@${userId}>, you must be a member of **both servers** and have the required **Freshman** role to submit. Join here if needed: https://discord.gg/photography`,
       });
       setTimeout(() => warning.delete().catch(() => {}), 30_000);
       return;
@@ -114,7 +112,7 @@ if (destMember && !hasDestRole) {
       console.log(`❌ ${message.author.tag} submission missing image or caption`);
       await message.delete().catch(console.error);
       const warning = await message.channel.send({
-        content: `⚠️ <@${userId}>, all submissions must include **both an image and a caption**. Please re-submit within 30 minutes.`,
+        content: `⚠️ <@${userId}>, all submissions must include **both an image and a caption**. Please re-submit in 10 minutes.`,
       });
       setTimeout(() => warning.delete().catch(() => {}), 30_000);
       return;
@@ -134,7 +132,7 @@ if (destMember && !hasDestRole) {
     await destChannel.send({ embeds: [embed] });
 
   } catch (err) {
-    console.error(`🔥 Error processing message from ${message.author.tag}:`, err);
+    console.error(`🔥 Error processing message from ${message.author.tag}`);
   }
 });
 
