@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-# viltrox
-=======
-# viltrox
->>>>>>> b5f779d (Sanitized repo and removed secrets)
+Discord Bot for Viltrox x Photography Lounge Giveaway
